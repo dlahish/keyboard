@@ -24,7 +24,7 @@ export default class Keyboard extends Component {
   }
 
   onKeyCountChange(diff) {
-    const keyCount = Math.min(68, Math.max(1, this.state.keyCount + diff ))
+    const keyCount = Math.min(67, Math.max(1, this.state.keyCount + diff ))
     this.setState({ keyCount })
   }
 
