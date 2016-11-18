@@ -5,11 +5,8 @@ let { height, width } = Dimensions.get('window')
 export default (props) => {
   return (
     <TouchableOpacity
-      style={[styles.container, styles[props.keyType]]}
-      key={props.i}
-      onPress={() => props.playTone(props.i)}
-    >
-      <Text></Text>
+      style={[styles.container, styles[props.color]]}
+      onPress={() => props.onPlay()}>
     </TouchableOpacity>
   )
 }

@@ -9,7 +9,7 @@ export default class Keyboard extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      keyCount: 12
+      keyCount: 24
     }
   }
 
@@ -18,21 +18,24 @@ export default class Keyboard extends Component {
       if (error) {
         console.warn('failed to load the sound', error);
       }
+
       whoosh.play()
-    });
+    })
 
   }
 
-  onKeyCountChange(diff) {
+  changeKeyCount(diff) {
     const keyCount = Math.min(67, Math.max(1, this.state.keyCount + diff ))
     this.setState({ keyCount })
   }
 
   render() {
-    const keys = intervals(this.state.keyCount, (keyType, i) => <Key keyType={keyType} key={i} playTone={this.playTone} i={i}/>)
+    const keys = intervals(this.state.keyCount, (color, tone) =>
+      <Key color={color} key={tone} onPlay={() => this.playTone(tone)} />)
+
     return (
       <View style={{flex: 1}}>
-        <Header onKeyCountChange={this.onKeyCountChange.bind(this)} keyCount={this.state.keyCount}/>
+        <Header onKeyCountChange={this.changeKeyCount.bind(this)} keyCount={this.state.keyCount}/>
         <View style={styles.keyboard}>
           {keys}
         </View>
