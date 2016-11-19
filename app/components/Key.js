@@ -6,7 +6,8 @@ export default (props) => {
   return (
     <TouchableOpacity
       style={[styles.container, styles[props.color]]}
-      onPress={() => props.onPlay()}>
+      onPressIn={() => props.onPlay()}
+      onPressOut={() => props.onStop()}>
     </TouchableOpacity>
   )
 }

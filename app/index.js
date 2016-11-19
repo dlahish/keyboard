@@ -23,6 +23,10 @@ export default class Keyboard extends Component {
 
   }
 
+  stopTone() {
+    setTimeout(() => this.whoosh.stop(), 100)
+  }
+
   changeKeyCount(diff) {
     const keyCount = Math.min(64, Math.max(1, this.state.keyCount + diff ))
     this.setState({ keyCount })
@@ -30,7 +34,11 @@ export default class Keyboard extends Component {
 
   render() {
     const keys = intervals(this.state.keyCount, (color, tone) =>
-      <Key color={color} key={tone} onPlay={() => this.playTone(tone)} />)
+      <Key
+        color={color}
+        key={tone}
+        onPlay={() => this.playTone(tone)}
+        onStop={() => this.stopTone()} />)
 
     return (
       <View style={{flex: 1}}>
