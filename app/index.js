@@ -14,18 +14,17 @@ export default class Keyboard extends Component {
   }
 
   playTone(tone) {
-    var whoosh = new Sound(`${tone}.mp3`, Sound.MAIN_BUNDLE, (error) => {
+    this.whoosh = new Sound(`${tone + 3}.mp3`, Sound.MAIN_BUNDLE, (error) => {
       if (error) {
         console.warn('failed to load the sound', error);
       }
-
-      whoosh.play()
+      this.whoosh.play()
     })
 
   }
 
   changeKeyCount(diff) {
-    const keyCount = Math.min(67, Math.max(1, this.state.keyCount + diff ))
+    const keyCount = Math.min(64, Math.max(1, this.state.keyCount + diff ))
     this.setState({ keyCount })
   }
 
